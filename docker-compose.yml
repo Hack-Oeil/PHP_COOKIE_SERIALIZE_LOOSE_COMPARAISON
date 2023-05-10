@@ -1,0 +1,9 @@
+version: '3.3'
+services:
+  webserver:
+    build: server_1/
+    labels:
+      ho.ctf.cyrhades: webserver
+    ports:
+      - "80:80"
+    container_name: ho-webserver
