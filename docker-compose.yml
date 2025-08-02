@@ -1,9 +1,25 @@
-version: '3.3'
+version: '3.9'
 services:
-  webserver:
-    build: server_1/
+  ho-webserver:
+    build:
+      context: ./.docker/server_http
+      args:
+        TIMEZONE: ${TIMEZONE}
+    environment:
+      - HOOS_CTF_USERNAME=${HOOS_CTF_USERNAME:-}
     labels:
-      ho.ctf.cyrhades: webserver
+      ho.ctf.cyrhades: "1"
     ports:
-      - "80:80"
-    container_name: ho-webserver
+      - ${PORT}:80
+    restart: always
+    volumes:
+      - web:/var/www/html
+  composer:
+    image: composer
+    volumes:
+      - web:/app
+    command: composer install --ignore-platform-reqs
+volumes:
+  web:
+    labels:
+      ho.ctf.cyrhades: "1"

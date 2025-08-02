@@ -1,0 +1,32 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+<div class="login-form-wrapper">
+  <form class="login-form" method="post" action="">
+    <h2>Connexion</h2>
+    <p>
+      <span>Vous pouvez vous connecter avec les identifiants : <strong>guest / guest</strong></span>
+    </p>
+    {% if error is defined %}
+    <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+
+    <div class="form-floating">
+      <input type="text" class="form-control" id="username" name="username" placeholder="Nom d'utilisateur" required>
+      <label for="username">Nom d'utilisateur</label>
+    </div>
+
+    <div class="form-floating">
+      <input type="password" class="form-control" id="password" name="password" placeholder="Mot de passe" required>
+      <label for="password">Mot de passe</label>
+    </div>
+
+    <div class="checkbox-label">
+      <input type="checkbox" id="rememberMe" name="rememberMe">
+      <label for="rememberMe">Se souvenir de moi</label>
+    </div>
+
+    <button class="btn w-100" type="submit">Se connecter</button>
+  </form>
+</div>
+{% endblock %}
